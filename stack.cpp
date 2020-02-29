@@ -28,7 +28,7 @@ T *items;
 
 template <class T> Stack<T>::Stack()
 {
-    T items[] = new T[DEFAULTCAPACITY];
+    items[] = new T[DEFAULTCAPACITY];
     max_items = DEFAULTCAPACITY;
     num_items = 0;
 }
@@ -39,7 +39,7 @@ template <class T> Stack<T>::Stack()
  */
 template <class T> Stack<T>::~Stack()
 {
-    delete [] items; 
+    delete [] items;
 }
 
 /**
@@ -54,8 +54,21 @@ template <class T> Stack<T>::~Stack()
  */
 template <class T>
 void Stack<T>::push(const T &newItem){
-    
-    if()
+    if(num_items == max_items){
+        T *tempPointer = items;
+        items = new T[max_items * EXPANSIONFACTOR];
+        
+        for(int i = 0; i < num_items; i++){
+            *items[i] = *temPointer[i]
+        }
+        
+        max_items *= EXPANSIONFACTOR;
+        delete tempPointer;
+    }
+
+    items[num_items] = newItem;
+    num_items++;
+
 };
 
 /**
