@@ -10,11 +10,12 @@
  * be DEFAULTCAPACITY defined in stack.h.
  *
  */
+
+T* items; 
+
 template <class T> Stack<T>::Stack()
 {
-    /**
-     * @todo Your code here!
-     */
+    T items[] = new T[DEFAULTCAPACITY]; 
 }
 
 /**
@@ -23,9 +24,7 @@ template <class T> Stack<T>::Stack()
  */
 template <class T> Stack<T>::~Stack()
 {
-    /**
-     * @todo Your code here!
-     */
+    delete [] items; 
 }
 
 /**
@@ -40,9 +39,8 @@ template <class T> Stack<T>::~Stack()
  */
 template <class T>
 void Stack<T>::push(const T &newItem){
-    /**
-     * @todo Your code here!
-     */
+    
+    if()
 };
 
 /**
