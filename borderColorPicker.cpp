@@ -19,7 +19,7 @@ HSLAPixel borderColorPicker::operator()(point p)
         for(int y = -borderSize; y <= (int)borderSize; y++){
             if (x*x + y*y <= MDS &&
             ( (p.x + x) > img.width() || p.x + x < 0 || p.y + y > img.height() || p.y + y < 0 ||
-            img.getPixel(p.x + x, p.y + y)->dist(fillColor) > tolerance)){
+            img.getPixel(p.x + x, p.y + y)->dist(fillColor) < tolerance)){
                 ret.h = fillColor.h;
                 ret.s = fillColor.s;
                 ret.l = fillColor.l;
