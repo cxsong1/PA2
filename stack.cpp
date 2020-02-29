@@ -48,7 +48,7 @@ void Stack<T>::push(const T &newItem){
         }
         
         max_items *= EXPANSIONFACTOR;
-        delete tempPointer;
+        delete [] tempPointer;
     }
 
     items[num_items] = newItem;
