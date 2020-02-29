@@ -9,11 +9,9 @@
  *
  * @param newItem object to be added to the Queue.
  */
-template <class T> void Queue<T>::enqueue(const T &newItem)
+
+template <class T> void Queue<T>::enqueue(T const &newItem)
 {
-    /**
-     * @todo Your code here!
-     */
     stack_1.push(newItem);
 }
 
@@ -25,9 +23,6 @@ template <class T> void Queue<T>::enqueue(const T &newItem)
  */
 template <class T> T Queue<T>::dequeue()
 {
-    /**
-     * @todo Your code here! You will need to replace the following line.
-     */
     if (stack_2.isEmpty()){
         while(!stack_1.isEmpty()){
             stack_2.push(stack_1.pop());

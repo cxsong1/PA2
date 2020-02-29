@@ -144,10 +144,9 @@ void Stack<T>::resize(size_t n){
     T *tempPointer = items; 
     items = new T[n]; 
 
-    for(int i = 0; i < num_items; i++){
+    for(int i = 0; (size_t)i < num_items; i++){
         *(items + i) = *(tempPointer + i);
     }   
     max_items = n; 
     delete [] tempPointer; 
 };
-
