@@ -16,4 +16,6 @@ HSLAPixel fadeColorPicker::operator()(point p)
         ret.l *= fadeFactor; 
     }
     ret.s = p.c.color.s; 
+
+    return ret; 
 }
