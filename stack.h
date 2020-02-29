@@ -105,3 +105,4 @@ template <class T> class Stack : public OrderingStructure<T>
 #include "stack.cpp" // needed for template instantiation
 
 #endif
+
