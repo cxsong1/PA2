@@ -9,7 +9,7 @@
  *
  * @param newItem object to be added to the Queue.
  */
-template <class T> void Queue<T>::enqueue(T const &newItem)
+template <class T> void Queue<T>::enqueue(const T &newItem)
 {
     /**
      * @todo Your code here!
