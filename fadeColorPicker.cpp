@@ -16,8 +16,7 @@ HSLAPixel fadeColorPicker::operator()(point p)
     ret.l = p.c.color.l; 
 
     for(int i = 0; i < distanceSquare; i++){
-        ret.l *= fadeFactor; 
-        cout<<"new lum: "<<ret.l<<"\n"; 
+        ret.l *= fadeFactor;  
     }
     ret.s = p.c.color.s; 
 
