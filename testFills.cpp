@@ -161,11 +161,13 @@ void testOrWriteColorPicker(PNG &img, colorPicker &picker, string base_name)
     }
     else
     {
+        result.writeToFile(IMAGEDIR + base_name + ".png");
         PNG expected;
         expected.readFromFile(SOLNIMGDIR + base_name + ".png");
         REQUIRE(result == expected);
     }
 }
+
 
 /**
  * Test Cases
