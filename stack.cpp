@@ -11,7 +11,20 @@
  *
  */
 
-T* items; 
+/**
+ * The maximum number of items the stack can store without a resize
+ */
+size_t max_items;
+
+/**
+ * The number of items currently in the stack
+ */
+size_t num_items;
+
+/**
+ * The dynamic array representing our Stack
+ */
+T *items; 
 
 template <class T> Stack<T>::Stack()
 {
