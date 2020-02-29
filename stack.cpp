@@ -150,3 +150,4 @@ void Stack<T>::resize(size_t n){
     max_items = n; 
     delete [] tempPointer; 
 };
+
