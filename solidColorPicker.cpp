@@ -7,5 +7,5 @@ solidColorPicker::solidColorPicker(HSLAPixel fillColor)
 
 HSLAPixel solidColorPicker::operator()(point p)
 {
-    return color; 
+    return p.c.color; 
 }
