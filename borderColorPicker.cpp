@@ -13,7 +13,7 @@ borderColorPicker::borderColorPicker(unsigned int borderSize, HSLAPixel fillColo
 HSLAPixel borderColorPicker::operator()(point p)
 {
     /* your code here */
-    int MDS = borderSize*borderSize;
+    unsigned int MDS = borderSize*borderSize;
     HSLAPixel ret;
     for(int x = -borderSize; x <= borderSize; x++){
         for(int y = -borderSize; y <= borderSize; y++){
