@@ -3,10 +3,10 @@
 borderColorPicker::borderColorPicker(unsigned int borderSize, HSLAPixel fillColor, PNG &img, double tolerance)
 {
     /* your code here */
-    this.borderSize = borderSize;
-    this.fillColor = fillColor;
-    this.img = img;
-    this.tolerance = tolerance;
+    this->borderSize = borderSize;
+    this->fillColor = fillColor;
+    this->img = img;
+    this->tolerance = tolerance;
 
 }
 
