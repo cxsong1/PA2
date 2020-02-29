@@ -28,7 +28,9 @@ T *items;
 
 template <class T> Stack<T>::Stack()
 {
-    T items[] = new T[DEFAULTCAPACITY]; 
+    T items[] = new T[DEFAULTCAPACITY];
+    max_items = DEFAULTCAPACITY;
+    num_items = 0;
 }
 
 /**
