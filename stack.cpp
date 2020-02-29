@@ -44,7 +44,7 @@ void Stack<T>::push(const T &newItem){
         items = new T[max_items * EXPANSIONFACTOR];
         
         for(int i = 0; i < num_items; i++){
-            *items[i] = *tempPointer[i];
+            *(items + i) = *(tempPointer + i);
         }
         
         max_items *= EXPANSIONFACTOR;
@@ -67,9 +67,20 @@ void Stack<T>::push(const T &newItem){
  */
 template <class T>
 T Stack<T>::pop(){
-    /**
-     * @todo Your code here!
-     */
+    
+    if(num_items-1 < 1/SHRINKRATE){
+        T *tempPointer = items; 
+        items = new T[max_items/EXPANSIONFACTOR]; 
+
+        for(int i = 0; i < num_items; i++){
+            *(items + i) = *(tempPointer + i);
+        }
+        
+        max_items /= EXPANSIONFACTOR;
+        delete tempPointer;
+    }
+    num_items--; 
+    return items[num_items]; 
 };
 
 /**
