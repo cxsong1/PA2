@@ -7,7 +7,7 @@ fadeColorPicker::fadeColorPicker(double fade)
 
 HSLAPixel fadeColorPicker::operator()(point p)
 {
-    double distanceSquare = sqrt((p.x-p.c.x)*(p.x-p.c.x) + (p.y-p.c.y)*(p.y-p.c.y)); 
+    double distanceSquare = (p.x-p.c.x)*(p.x-p.c.x) + (p.y-p.c.y)*(p.y-p.c.y); 
     HSLAPixel ret; 
     ret.h = p.c.color.h; 
     ret.l = p.c.color.l; 
