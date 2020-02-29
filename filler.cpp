@@ -16,6 +16,7 @@ animation filler::fillBFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
+    return fill<Queue>(config);
 }
 
 /**
@@ -30,6 +31,7 @@ animation filler::fillDFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
+    return fill<Stack>(config);
 }
 
 /**
@@ -106,4 +108,16 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *        it will be the one we test against.
      *
      */
+    T processing;
+    unordered_set <point> processed;
+    for(center c : config.centers){
+        processing.add(c);
+    }
+    while(!processing.isEmpty()){
+        point currentPoint = processing.remove();
+        if(currentPoint.c.color.dist(config.img.getPixel(currentPoint.x, currentPoint.y)) < config.tolerance){
+            config.img.getPixel(currentPoint.x, currentPoint.y) = 
+        }
+
+    }
 }
