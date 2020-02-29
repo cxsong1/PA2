@@ -40,15 +40,7 @@ template <class T> Stack<T>::~Stack()
 template <class T>
 void Stack<T>::push(const T &newItem){
     if(num_items == max_items){
-        T *tempPointer = items;
-        items = new T[max_items * EXPANSIONFACTOR];
-        
-        for(int i = 0; i < num_items; i++){
-            *(items + i) = *(tempPointer + i);
-        }
-        
-        max_items *= EXPANSIONFACTOR;
-        delete tempPointer;
+        resize(max_items*EXPANSIONFACTOR); 
     }
 
     items[num_items] = newItem;
@@ -69,15 +61,7 @@ template <class T>
 T Stack<T>::pop(){
     
     if(num_items-1 < 1/SHRINKRATE){
-        T *tempPointer = items; 
-        items = new T[max_items/EXPANSIONFACTOR]; 
-
-        for(int i = 0; i < num_items; i++){
-            *(items + i) = *(tempPointer + i);
-        }
-        
-        max_items /= EXPANSIONFACTOR;
-        delete tempPointer;
+        resize(max_items/EXPANSIONFACTOR); 
     }
     num_items--; 
     return items[num_items]; 
@@ -90,10 +74,7 @@ T Stack<T>::pop(){
  */
 template <class T> void Stack<T>::add(const T &theItem)
 {
-    /**
-     * @todo Your code here! Hint: this should call another Stack function
-     *  to add the element to the Stack.
-     */
+    push(theItem); 
 }
 
 /**
@@ -103,10 +84,7 @@ template <class T> void Stack<T>::add(const T &theItem)
  */
 template <class T> T Stack<T>::remove()
 {
-    /**
-     * @todo Your code here! Hint: this should call another Stack function
-     * to remove an element from the Stack and return it.
-     */
+    pop(); 
 }
 
 /**
@@ -119,9 +97,7 @@ template <class T> T Stack<T>::remove()
  */
 template <class T>
 T Stack<T>::peek(){
-    /**
-     * @todo Your code here!
-     */
+    return items[num_items-1]; 
 };
 
 /**
@@ -131,9 +107,7 @@ T Stack<T>::peek(){
  */
 template <class T>
 bool Stack<T>::isEmpty() const {
-    /**
-     * @todo Your code here!
-     */
+    return num_items == 0; 
 };
 
 /**
@@ -146,9 +120,7 @@ bool Stack<T>::isEmpty() const {
  */
 template <class T>
 size_t Stack<T>::capacity() const {
-    /**
-     * @todo Your code here!
-     */
+    return max_items; 
 };
 
 /**
@@ -158,9 +130,7 @@ size_t Stack<T>::capacity() const {
  */
 template <class T>
 size_t Stack<T>::size() const {
-    /**
-     * @todo Your code here!
-     */
+    return num_items; 
 };
 
 /**
@@ -171,7 +141,12 @@ size_t Stack<T>::size() const {
  */
 template <class T>
 void Stack<T>::resize(size_t n){
-    /**
-     * @todo Your code here!
-     */
+    T *tempPointer = items; 
+    items = new T[n]; 
+
+    for(int i = 0; i < num_items; i++){
+        *(items + i) = *(tempPointer + i);
+    }   
+    max_items = n; 
+    delete [] tempPointer; 
 };
