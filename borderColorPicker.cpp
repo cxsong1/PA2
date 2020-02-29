@@ -13,10 +13,10 @@ borderColorPicker::borderColorPicker(unsigned int borderSize, HSLAPixel fillColo
 HSLAPixel borderColorPicker::operator()(point p)
 {
     /* your code here */
-    unsigned int MDS = borderSize*borderSize;
+    int MDS = borderSize*borderSize;
     HSLAPixel ret;
-    for(int x = -borderSize; x <= borderSize; x++){
-        for(int y = -borderSize; y <= borderSize; y++){
+    for(int x = -borderSize; x <= (int)borderSize; x++){
+        for(int y = -borderSize; y <= (int)borderSize; y++){
             if (x*x + y*y <= MDS &&
             img.getPixel(p.x + x, p.y + y)->dist(fillColor) > tolerance ){
                 ret.h = fillColor.h;
