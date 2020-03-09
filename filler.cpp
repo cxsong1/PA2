@@ -108,7 +108,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *        it will be the one we test against.
      *
      */
-    OrderingStructure<T> processing;
+    OrderingStructure processing;
     std::unordered_set <point> processed;
     for(center c : config.centers){
         processing.add(c);
