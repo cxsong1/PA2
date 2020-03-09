@@ -84,7 +84,7 @@ template <class T> void Stack<T>::add(const T &theItem)
  */
 template <class T> T Stack<T>::remove()
 {
-    pop(); 
+    return pop(); 
 }
 
 /**
