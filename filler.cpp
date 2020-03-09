@@ -16,7 +16,7 @@ animation filler::fillBFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return fill<Queue>(config);
+    return filler::fill<Queue>(config);
 }
 
 /**
@@ -31,7 +31,7 @@ animation filler::fillDFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return fill<Stack>(config);
+    return filler::fill<Stack>(config);
 }
 
 /**
