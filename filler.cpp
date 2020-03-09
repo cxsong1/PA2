@@ -118,10 +118,10 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         point currentPoint = processing.remove();
         int i;
         for(i = 0; i < config.centers.size() && currentPoint.c != config.centers[i]; i++) //find index of center
-        colorPicker * = config.pickers[i];
+        colorPicker * picker = config.pickers[i];
         
         if(currentPoint.c.color.dist(config.img.getPixel(currentPoint.x, currentPoint.y)) < config.tolerance){
-            config.img.getPixel(currentPoint.x, currentPoint.y) = colorPicker->operator(currentPoint);
+            config.img.getPixel(currentPoint.x, currentPoint.y) = picker->operator(currentPoint);
         }
 
     }
