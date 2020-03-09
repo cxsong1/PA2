@@ -16,7 +16,7 @@ animation filler::fillBFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return filler::fill<Queue>(config);
+    return fill<Queue>(config);
 }
 
 /**
@@ -31,7 +31,7 @@ animation filler::fillDFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return filler::fill<Stack>(config);
+    return fill<Stack>(config);
 }
 
 /**
@@ -108,15 +108,20 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *        it will be the one we test against.
      *
      */
-    OrderingStructure processing;
-    std::unordered_set <point> processed;
+    OrderingStructure<point> processing;
+    std::unordered_set<point> processed;
     for(center c : config.centers){
         processing.add(c);
     }
     while(!processing.isEmpty()){
+
         point currentPoint = processing.remove();
+        int i;
+        for(i = 0; i < config.centers.size() && currentPoint.c != config.centers[i]; i++) //find index of center
+        colorPicker * = config.pickers[i];
+        
         if(currentPoint.c.color.dist(config.img.getPixel(currentPoint.x, currentPoint.y)) < config.tolerance){
-            config.img.getPixel(currentPoint.x, currentPoint.y) = 
+            config.img.getPixel(currentPoint.x, currentPoint.y) = colorPicker->operator(currentPoint);
         }
 
     }
