@@ -120,7 +120,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         for(i = 0; i < config.centers.size() && currentPoint.c.x != config.centers[i].x && currentPoint.c.y != config.centers[i].y; i++); //find index of center
         colorPicker * picker = config.pickers[i];
         
-        if(currentPoint.c.color.dist(config.img.getPixel(currentPoint.x, currentPoint.y)) < config.tolerance){
+        if(currentPoint.c.color.dist(*config.img.getPixel(currentPoint.x, currentPoint.y)) < config.tolerance){
             *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
         }
 
