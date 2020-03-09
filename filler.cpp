@@ -125,5 +125,5 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         }
 
     }
-    return NULL;
+    return new animation();
 }
