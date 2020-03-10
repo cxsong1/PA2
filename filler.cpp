@@ -112,7 +112,13 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //OrderingStructure<point> processing;
 
     //begin initialized to 0
-    int processed[config.img.width()][config.img.height()] = {{0}};
+    int processed[config.img.width()][config.img.height()];
+    for(int i = 0; i < config.img.width(); i++){
+        for(int j = 0; j < config.img.height(); j++){
+            processed[i][j] = 0;
+        }
+    }
+
     gif.addFrame(config.img);
     
     //adds all centers in config to processing orderingStructure
