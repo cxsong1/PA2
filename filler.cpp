@@ -125,11 +125,13 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         center c = config.centers[centerIndex];
         OrderingStructure<point> processing;
         processing.add(c);
+        
         while(!processing.isEmpty()){
 
             //pop next point off orderingStructure
             point currentPoint = processing.remove();  
             processed[currentPoint.x][currentPoint.y] = true;   //flag the current point as processed
+            cout << "(" << currentPoint.x << ", " << currentPoint.y << ") processed" << endl;
             
             colorPicker * picker = config.pickers[centerIndex];
             
