@@ -108,6 +108,8 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *        it will be the one we test against.
      *
      */
+    animation gif;
+    gif.addFrame(config.img);
     OrderingStructure<point> processing;
     //std::unordered_set<point> processed;
     for(center c : config.centers){
