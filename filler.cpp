@@ -109,11 +109,11 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *
      */
     animation gif;
-    gif.addFrame(config.img);
     //OrderingStructure<point> processing;
 
     //begin initialized to 0
     bool processed[config.img.width()][config.img.height()] = {{0}};
+    gif.addFrame(config.img);
     
     //adds all centers in config to processing orderingStructure
     //for(center c : config.centers){
