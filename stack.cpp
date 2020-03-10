@@ -59,12 +59,14 @@ void Stack<T>::push(const T &newItem){
  */
 template <class T>
 T Stack<T>::pop(){
+
+    num_items--; 
+    T retTop = items[num_items]; 
     
-    if(num_items-1 < max_items/SHRINKRATE && max_items/EXPANSIONFACTOR >= DEFAULTCAPACITY){
+    if(num_items < max_items/SHRINKRATE && max_items/EXPANSIONFACTOR >= DEFAULTCAPACITY){
         resize(max_items/EXPANSIONFACTOR); 
     }
-    num_items--; 
-    return items[num_items]; 
+    return retTop; 
 };
 
 /**
