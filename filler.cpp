@@ -112,7 +112,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //OrderingStructure<point> processing;
 
     //begin initialized to 0
-    int processed[2000][2000];
+    int processed[20000000][20000000];
     for(int i = 0; (unsigned long) i < config.img.width(); i++){
         for(int j = 0; (unsigned long) j < config.img.height(); j++){
             processed[i][j] = 0;
