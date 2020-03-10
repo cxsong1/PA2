@@ -112,7 +112,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //OrderingStructure<point> processing;
 
     //begin initialized to 0
-    bool processed[config.img.width()][config.img.height()] = {{0}};
+    int processed[config.img.width()][config.img.height()] = {{0}};
     gif.addFrame(config.img);
     
     //adds all centers in config to processing orderingStructure
@@ -131,7 +131,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
 
             //pop next point off orderingStructure
             point currentPoint = processing.remove();  
-            processed[currentPoint.x][currentPoint.y] = true;   //flag the current point as processed
+            processed[currentPoint.x][currentPoint.y] = 1;   //flag the current point as processed
             cout << "(" << currentPoint.x << ", " << currentPoint.y << ") processed" << endl;
             
             colorPicker * picker = config.pickers[centerIndex];
@@ -148,21 +148,21 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
                 //add neighbours to processing
 
                 //left
-                if(currentPoint.x - 1 >= 0 && !processed[currentPoint.x - 1][currentPoint.y]){
+                if(currentPoint.x - 1 >= 0 && processed[currentPoint.x - 1][currentPoint.y] == 0){
                     processing.add(point(currentPoint.x - 1, currentPoint.y, c));
                 }
                 //down
-                if(currentPoint.y + 1 < config.img.height() && !processed[currentPoint.x][currentPoint.y + 1]){
+                if(currentPoint.y + 1 < config.img.height() && processed[currentPoint.x][currentPoint.y + 1] == 0){
                     processing.add(point(currentPoint.x, currentPoint.y + 1, c));
                 }
 
                 //right
-                if(currentPoint.x + 1 < config.img.width() && !processed[currentPoint.x + 1][currentPoint.y]){
+                if(currentPoint.x + 1 < config.img.width() && processed[currentPoint.x + 1][currentPoint.y] == 0){
                     processing.add(point(currentPoint.x + 1, currentPoint.y, c));
                 }
 
                 //up
-                if(currentPoint.y - 1 >= 0 && !processed[currentPoint.x][currentPoint.y - 1]){
+                if(currentPoint.y - 1 >= 0 && processed[currentPoint.x][currentPoint.y - 1] == 0){
                     processing.add(point(currentPoint.x, currentPoint.y - 1, c));
                 }
 
