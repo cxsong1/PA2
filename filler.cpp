@@ -136,7 +136,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         cout<<"for loop! "<< endl; 
         
         while(!processing.isEmpty()){
-            cout<<"while loop"<<endl; 
+            //cout<<"while loop"<<endl; 
             //pop next point off orderingStructure
             point currentPoint = processing.remove();  
             processed[currentPoint.x][currentPoint.y] = 1;   //flag the current point as processed
