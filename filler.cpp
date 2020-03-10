@@ -137,27 +137,27 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
             *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
             //add frame to animation
             frameCount = (frameCount + 1) % config.frameFreq;
-            if (frameCount == 0) gif.addFrame(config.img)
+            if (frameCount == 0) gif.addFrame(config.img);
 
             //add neighbours to processing
 
             //left
             if(currentPoint.x - 1 >= 0 && !processed[currentPoint.x - 1][currentPoint.y]){
-                processing.add(new point(currentPoint.x - 1, currentPoint.y, currentPoint.c))
+                processing.add(new point(currentPoint.x - 1, currentPoint.y, currentPoint.c));
             }
             //down
             if(currentPoint.y + 1 < config.img.height() && !processed[currentPoint.x][currentPoint.y + 1]){
-                processing.add(new point(currentPoint.x, currentPoint.y + 1, currentPoint.c))
+                processing.add(new point(currentPoint.x, currentPoint.y + 1, currentPoint.c));
             }
 
             //right
             if(currentPoint.x + 1 < config.img.width() && !processed[currentPoint.x + 1][currentPoint.y]){
-                processing.add(new point(currentPoint.x + 1, currentPoint.y, currentPoint.c))
+                processing.add(new point(currentPoint.x + 1, currentPoint.y, currentPoint.c));
             }
 
             //up
             if(currentPoint.y - 1 >= 0 && !processed[currentPoint.x][currentPoint.y - 1]){
-                processing.add(new point(currentPoint.x, currentPoint.y - 1, currentPoint.c))
+                processing.add(new point(currentPoint.x, currentPoint.y - 1, currentPoint.c));
             }
 
         }
