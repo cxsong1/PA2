@@ -121,32 +121,21 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     }
 
     gif.addFrame(config.img);
-    
-    //adds all centers in config to processing orderingStructure
-    //for(center c : config.centers){
-    //    processing.add(c);
-    //}
 
     int frameCount = 0;
-    cout <<"centre size: "<<config.centers.size() << endl; 
     for(int centerIndex = 0; (unsigned long) centerIndex < config.centers.size(); centerIndex++){
         center c = config.centers[centerIndex];
         OrderingStructure<point> processing;
         processing.add(c);
-        cout<<"for loop! "<< endl; 
         
         while(!processing.isEmpty()){
-            //cout<<"while loop"<<endl; 
             //pop next point off orderingStructure
             point currentPoint = processing.remove();  
             processed[currentPoint.x][currentPoint.y] = 1;   //flag the current point as processed
-            //cout << "(" << currentPoint.x << ", " << currentPoint.y << ") processed" << endl;
             
             colorPicker * picker = config.pickers[centerIndex];
             
             if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
-
-                //cout << "pixel changed: " << currentPoint.x << " : " << currentPoint.y << endl;
 
                 *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
                 //add frame to animation

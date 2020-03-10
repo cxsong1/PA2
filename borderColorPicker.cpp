@@ -32,6 +32,5 @@ HSLAPixel borderColorPicker::operator()(point p)
     ret.s = img.getPixel(p.x, p.y)->s;
     ret.l = img.getPixel(p.x, p.y)->l;
     ret.a = img.getPixel(p.x, p.y)->a;
-    //cout<<"hello"<<endl;
     return ret;
 }
