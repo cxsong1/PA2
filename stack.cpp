@@ -74,7 +74,7 @@ T Stack<T>::pop(){
  */
 template <class T> void Stack<T>::add(const T &theItem)
 {
-    push(theItem); 
+    this.push(theItem); 
 }
 
 /**
