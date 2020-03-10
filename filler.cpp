@@ -113,8 +113,8 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
 
     //begin initialized to 0
     int processed[config.img.width()][config.img.height()];
-    for(int i = 0; i < config.img.width(); i++){
-        for(int j = 0; j < config.img.height(); j++){
+    for(int i = 0; *unsigned long) i < config.img.width(); i++){
+        for(int j = 0; (unsigned long) j < config.img.height(); j++){
             processed[i][j] = 0;
         }
     }
