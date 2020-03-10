@@ -121,7 +121,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //}
 
     int frameCount = 0;
-    for(int centerIndex = 0; centerIndex < config.centers.size(); centerIndex++){
+    for(int centerIndex = 0; (unsigned long) centerIndex < config.centers.size(); centerIndex++){
         center c = config.centers[centerIndex];
         OrderingStructure<point> processing;
         processing.add(c);
