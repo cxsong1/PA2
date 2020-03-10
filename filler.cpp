@@ -145,7 +145,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
             
             if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
 
-                cout << "pixel changed: " << currentPoint.x << " : " << currentPoint.y << endl;
+                //cout << "pixel changed: " << currentPoint.x << " : " << currentPoint.y << endl;
 
                 *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
                 //add frame to animation
