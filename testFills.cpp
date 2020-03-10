@@ -217,7 +217,7 @@ TEST_CASE("fill::solid dfs", "[weight=1][part=fill]")
 
     deleteConfig(config);
 }
-/*
+
 TEST_CASE("fill::border bfs", "[weight=1][part=fill]")
 {
 
@@ -254,7 +254,7 @@ TEST_CASE("fill::border dfs", "[weight=1][part=fill]")
     testOrWriteFill(anim, "dfs_border");
 
     deleteConfig(config);
-}*/
+}
 
 TEST_CASE("fill::fade bfs", "[weight=1][part=fill]")
 {
