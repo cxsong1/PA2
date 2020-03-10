@@ -168,7 +168,6 @@ void testOrWriteColorPicker(PNG &img, colorPicker &picker, string base_name)
     }
 }
 
-
 /**
  * Test Cases
  */
@@ -290,3 +289,4 @@ TEST_CASE("fill::fade dfs", "[weight=1][part=fill]")
 
     deleteConfig(config);
 }
+
