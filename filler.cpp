@@ -16,7 +16,7 @@ animation filler::fillBFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return fill<Stack>(config);
+    return fill<Queue>(config);
 }
 
 /**
@@ -31,7 +31,7 @@ animation filler::fillDFS(FillerConfig &config)
      * @todo Your code here! You should replace the following line with a
      * correct call to fill.
      */
-    return fill<Queue>(config);
+    return fill<Stack>(config);
 }
 
 /**
@@ -110,62 +110,64 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      */
     animation gif;
     //gif.addFrame(config.img);
-    OrderingStructure<point> processing;
+    //OrderingStructure<point> processing;
 
     //begin initialized to 0
     bool processed[config.img.width()][config.img.height()];
     
     //adds all centers in config to processing orderingStructure
-    for(center c : config.centers){
-        processing.add(c);
-    }
+    //for(center c : config.centers){
+    //    processing.add(c);
+    //}
 
     int frameCount = 0;
-    while(!processing.isEmpty()){
+    for(int centerIndex = 0; centerIndex < config.centers.size(); i++){
+        center c = config.centers[centerIndex];
+        OrderingStructure<point> processing;
+        processing.add(c);
+        while(!processing.isEmpty()){
 
-        //pop next point off orderingStructure
-        point currentPoint = processing.remove();  
-        processed[currentPoint.x][currentPoint.y] = true;   //flag the current point as processed
+            //pop next point off orderingStructure
+            point currentPoint = processing.remove();  
+            processed[currentPoint.x][currentPoint.y] = true;   //flag the current point as processed
+            
+            colorPicker * picker = config.pickers[centerIndex];
+            
+            if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
 
-        //choose the correct color picker for the given point
-        int i;
-        for(i = 0; (unsigned long) i < config.centers.size() && currentPoint.c.x != config.centers[i].x && currentPoint.c.y != config.centers[i].y; i++); //find index of center
-        colorPicker * picker = config.pickers[i];
-        
-        if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
+                cout << "pixel changed: " << currentPoint.x << " : " << currentPoint.y << endl;
 
-            cout << "pixel changed: " << currentPoint.x << " : " << currentPoint.y << endl;
+                *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
+                //add frame to animation
+                frameCount = (frameCount + 1) % config.frameFreq;
+                if (frameCount == 0) gif.addFrame(config.img);
 
-            *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
-            //add frame to animation
-            frameCount = (frameCount + 1) % config.frameFreq;
-            if (frameCount == 0) gif.addFrame(config.img);
+                //add neighbours to processing
 
-            //add neighbours to processing
+                //left
+                if(currentPoint.x - 1 >= 0 && !processed[currentPoint.x - 1][currentPoint.y]){
+                    processing.add(point(currentPoint.x - 1, currentPoint.y, c));
+                }
+                //down
+                if(currentPoint.y + 1 < config.img.height() && !processed[currentPoint.x][currentPoint.y + 1]){
+                    processing.add(point(currentPoint.x, currentPoint.y + 1, c));
+                }
 
-            //left
-            if(currentPoint.x - 1 >= 0 && !processed[currentPoint.x - 1][currentPoint.y]){
-                processing.add(point(currentPoint.x - 1, currentPoint.y, currentPoint.c));
+                //right
+                if(currentPoint.x + 1 < config.img.width() && !processed[currentPoint.x + 1][currentPoint.y]){
+                    processing.add(point(currentPoint.x + 1, currentPoint.y, c));
+                }
+
+                //up
+                if(currentPoint.y - 1 >= 0 && !processed[currentPoint.x][currentPoint.y - 1]){
+                    processing.add(point(currentPoint.x, currentPoint.y - 1, c));
+                }
+
             }
-            //down
-            if(currentPoint.y + 1 < config.img.height() && !processed[currentPoint.x][currentPoint.y + 1]){
-                processing.add(point(currentPoint.x, currentPoint.y + 1, currentPoint.c));
-            }
 
-            //right
-            if(currentPoint.x + 1 < config.img.width() && !processed[currentPoint.x + 1][currentPoint.y]){
-                processing.add(point(currentPoint.x + 1, currentPoint.y, currentPoint.c));
-            }
 
-            //up
-            if(currentPoint.y - 1 >= 0 && !processed[currentPoint.x][currentPoint.y - 1]){
-                processing.add(point(currentPoint.x, currentPoint.y - 1, currentPoint.c));
-            }
 
         }
-
-
-
     }
     gif.addFrame(config.img);
     return gif;
