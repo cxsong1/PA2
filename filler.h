@@ -16,6 +16,7 @@
 #include "point.h"
 #include "queue.h"
 #include "stack.h"
+#include "unordered_set"
 
 using namespace std;
 using namespace cs221util;

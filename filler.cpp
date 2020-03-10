@@ -111,20 +111,58 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     animation gif;
     gif.addFrame(config.img);
     OrderingStructure<point> processing;
-    //std::unordered_set<point> processed;
+
+    //begin initialized to 0
+    bool processed[config.img.width()][config.img.height()];
+    
+    //adds all centers in config to processing orderingStructure
     for(center c : config.centers){
         processing.add(c);
     }
+
+
+    int frameCount = 0;
     while(!processing.isEmpty()){
 
-        point currentPoint = processing.remove();
+        //pop next point off orderingStructure
+        point currentPoint = processing.remove();  
+        processed[currentPoint.x][currentPoint.y] = true;   //flag the current point as processed
+
+        //choose the correct color picker for the given point
         int i;
         for(i = 0; (unsigned long) i < config.centers.size() && currentPoint.c.x != config.centers[i].x && currentPoint.c.y != config.centers[i].y; i++); //find index of center
         colorPicker * picker = config.pickers[i];
         
         if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
             *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
+            //add frame to animation
+            frameCount = (frameCount + 1) % config.frameFreq;
+            if (frameCount == 0) gif.addFrame(config.img)
+
+            //add neighbours to processing
+
+            //left
+            if(currentPoint.x - 1 >= 0 && !processed[currentPoint.x - 1][currentPoint.y]){
+                processing.add(new Point(currentPoint.x - 1, currentPoint.y, currentPoint.c))
+            }
+            //down
+            if(currentPoint.y + 1 < config.img.height && !processed[currentPoint.x][currentPoint.y + 1]){
+                processing.add(new Point(currentPoint.x, currentPoint.y + 1, currentPoint.c))
+            }
+
+            //right
+            if(currentPoint.x + 1 < config.img.width && !processed[currentPoint.x + 1][currentPoint.y]){
+                processing.add(new Point(currentPoint.x + 1, currentPoint.y, currentPoint.c))
+            }
+
+            //up
+            if(currentPoint.y - 1 >= 0 && !processed[currentPoint.x][currentPoint.y - 1]){
+                processing.add(new Point(currentPoint.x, currentPoint.y - 1, currentPoint.c))
+            }
+
         }
+
+
 
     }
     return *(new animation());
