@@ -114,9 +114,9 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //begin initialized to 0
     vector<vector<int>> processed;
     for(int i = 0; (unsigned long) i < config.img.width(); i++){
-        processed.add(vector<int>);
+        processed.push_back(vector<int>);
         for(int j = 0; (unsigned long) j < config.img.height(); j++){
-            processed[i].add(0);
+            processed[i].push_back(0);
         }
     }
 
