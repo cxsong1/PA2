@@ -17,6 +17,7 @@
 #include "queue.h"
 #include "stack.h"
 #include "unordered_set"
+#include <vector>
 
 using namespace std;
 using namespace cs221util;

@@ -112,10 +112,11 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     //OrderingStructure<point> processing;
 
     //begin initialized to 0
-    int processed[config.img.width()][config.img.height()];
+    vector<vector<int>> processed;
     for(int i = 0; (unsigned long) i < config.img.width(); i++){
+        processed.add(vector<int>);
         for(int j = 0; (unsigned long) j < config.img.height(); j++){
-            processed[i][j] = 0;
+            processed[i].add(0);
         }
     }
 
@@ -138,7 +139,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
             cout<<"while loop"<<endl; 
             //pop next point off orderingStructure
             point currentPoint = processing.remove();  
-            processed[currentPoint.x][currentPoint.y] = 1;   //flag the current point as processed
+            processed[currentPoint.][currentPoint.y] = 1;   //flag the current point as processed
             //cout << "(" << currentPoint.x << ", " << currentPoint.y << ") processed" << endl;
             
             colorPicker * picker = config.pickers[centerIndex];
