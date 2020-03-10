@@ -109,7 +109,7 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
      *
      */
     animation gif;
-    gif.addFrame(config.img);
+    //gif.addFrame(config.img);
     OrderingStructure<point> processing;
 
     //begin initialized to 0
@@ -119,7 +119,6 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
     for(center c : config.centers){
         processing.add(c);
     }
-
 
     int frameCount = 0;
     while(!processing.isEmpty()){
@@ -134,6 +133,9 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
         colorPicker * picker = config.pickers[i];
         
         if(currentPoint.c.color.dist(*(config.img.getPixel(currentPoint.x, currentPoint.y))) < config.tolerance){
+
+            cout << "pixel changed" << endl;
+
             *(config.img.getPixel(currentPoint.x, currentPoint.y)) = picker->operator()(currentPoint);
             //add frame to animation
             frameCount = (frameCount + 1) % config.frameFreq;
@@ -165,5 +167,6 @@ template <template <class T> class OrderingStructure> animation filler::fill(Fil
 
 
     }
-    return *(new animation());
+    gif.addFrame(config.img);
+    return gif;
 }
